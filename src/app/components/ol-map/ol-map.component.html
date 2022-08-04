@@ -1,0 +1,76 @@
+<div id="map" style='width:100%;height:60%;'>
+</div>
+
+
+<form>
+
+
+
+    <mat-grid-list cols="3" rowHeight="100px">
+        <mat-grid-tile>
+            <!-- <h4>Geometry type</h4> -->
+            <mat-form-field appearance="fill">
+                <mat-label>Geometry type</mat-label>
+                <mat-select [(ngModel)]="selectedGeometry" name="geometryType" (selectionChange)="geometryChanged($event.value)">
+                    <mat-option *ngFor="let geometryType of geometryTypes" [value]="geometryType.value">
+                        {{geometryType.viewValue}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <p> Selected geometryType: {{selectedGeometry}} </p>
+        </mat-grid-tile>
+
+        <mat-grid-tile>
+            <mat-form-field appearance="fill">
+                <mat-label>Data Type</mat-label>
+                <mat-select [(ngModel)]="selectedData" name="dataType">
+                    <mat-option *ngFor="let dataType of dataTypes" [value]="dataType.value">
+                        {{dataType.viewValue}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <p> Selected dataType: {{selectedData}} </p>
+        </mat-grid-tile>
+
+
+        <mat-grid-tile>
+            <mat-radio-group class="example-radio-group" name="opList" [(ngModel)]="selectedIteration">
+                <mat-radio-button class="example-radio-button" name="opList" *ngFor="let iterationType of iterationTypes" [value]="iterationType.value">
+                    {{iterationType.viewValue}}
+                </mat-radio-button>
+            </mat-radio-group>
+            <div class="example-selected-value">Your favorite iterationType is: {{selectedIteration}}</div>
+        </mat-grid-tile>
+
+    </mat-grid-list>
+
+</form>
+
+<div>
+    <label>Interaction type: &nbsp;</label>
+    <label>draw</label>
+    <input type="radio" id="interaction_type_draw" name="interaction_type" value="draw" checked>
+    <label>modify</label>
+    <input type="radio" id="interaction_type_modify" name="interaction_type" value="modify">
+</div>
+<div>
+    <label>Geometry type</label>
+    <select id="geom_type">
+        <option value="Point" selected>Point</option>
+        <option value="LineString">LineString</option>
+        <option value="Polygon">Polygon</option>
+    </select>
+</div>
+<div>
+    <label>Data type</label>
+    <select id="data_type">
+        <option value="GeoJSON" selected>GeoJSON</option>
+        <option value="KML">KML</option>
+        <option value="GPX">GPX</option>
+    </select>
+</div>
+<div id="delete" style="text-decoration:underline;cursor:pointer">
+    Delete all features
+</div>
+<label>Data:</label>
+<textarea id="data" rows="12" style="width:100%"></textarea>
